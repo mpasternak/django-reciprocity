@@ -15,6 +15,6 @@ COPY nginx.conf /etc/nginx/
 
 EXPOSE 80
 
-RUN nginx -t
+# RUN nginx -t
 
 ENTRYPOINT nginx && tail -f /var/log/nginx/*
