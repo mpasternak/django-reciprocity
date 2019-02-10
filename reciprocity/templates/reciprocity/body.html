@@ -1,0 +1,44 @@
+{% load static %}
+{% if not reciprocity_page_uuid %}
+{% load template_uuid %}
+{% uuid4 reciprocity_page_uuid %}
+{% endif %}
+{% csrf_token %}
+
+<script>
+    var csrftoken = document.getElementsByName("csrfmiddlewaretoken")[0].value;
+    var sessionid = "{{ request.session.session_key|default:"" }}";
+    var webPageUUID = "{{ reciprocity_page_uuid }}";
+    var requestAuthorised = false;
+
+    {% if request.is_authenticated %}
+        requestAuthorised = true;
+    {% endif %}
+
+    document.addEventListener("DOMContentLoaded", function (event) {
+        iplweb.reciprocity.init(
+            csrftoken,
+            "{{ NGINX_PUSH_STREAM_PUB_PREFIX }}",
+            "{% static "reciprocity/html/" %}",
+            "{{ NGINX_PUSH_STREAM_SUB_HOST}}",
+            "{{ NGINX_PUSH_STREAM_SUB_PORT }}"
+        );
+
+        iplweb.reciprocity.subscribe('__all__');
+
+        if (requestAuthorised)
+            iplweb.reciprocity.subscrive('__authorized__');
+
+        if (sessionid !== "")
+            iplweb.reciprocity.subscribe("__session__" + sessionid);
+
+        if (webPageUUID !== "")
+            iplweb.reciprocity.subscribe("__uuid__" + webPageUUID);
+
+        iplweb.reciprocity.connect();
+    });
+
+</script>
+
+<div id="reciprocity-callout-placeholder"></div>
+<div id="reciprocity-dialog-placeholder"></div>

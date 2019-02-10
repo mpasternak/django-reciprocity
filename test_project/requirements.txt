@@ -1,0 +1,4 @@
+Django
+django-nginx-push-stream
+django-template-uuid
+django-yarn

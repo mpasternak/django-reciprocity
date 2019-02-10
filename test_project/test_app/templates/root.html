@@ -1,0 +1,42 @@
+{% load static template_uuid %}
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Title</title>
+
+    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+
+    <script src="{% static "jquery/dist/jquery.js" %}"></script>
+    <script src="{% static "what-input/dist/what-input.js" %}"></script>
+
+    <script src="{% static "foundation-sites/dist/js/foundation.js" %}"></script>
+    <script src="{% static "motion-ui/dist/motion-ui.js" %}"></script>
+    <link rel="stylesheet" href="{% static "foundation-sites/dist/css/foundation.css" %}">
+    <link rel="stylesheet" href="{% static "motion-ui/dist/motion-ui.css" %}">
+    {% include "reciprocity/header.html" %}
+
+</head>
+<body>
+<div class="grid-x">
+    <div class="cell">
+        {% load template_uuid %}
+        {% uuid4 reciprocity_page_uuid %}
+
+        {% include "reciprocity/body.html" with reciprocity_page_uuid=reciprocity_page_uuid %}
+
+        My web page ID is: {{ reciprocity_page_uuid }}. The JavaScript code of this page just subscribed to a queue
+        with the same name, as this web page. Click the link below to call a procedure on Django server
+        (via XmlHttpRequest). That procedure, in turn, is going to publish some stuff straight to this
+        web page.
+    </div>
+</div>
+
+<script>
+    $(document).foundation();
+</script>
+
+</body>
+</html>
