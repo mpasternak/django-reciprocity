@@ -30,7 +30,8 @@ change this port, make sure to adjust variables ``NGINX_PUSH_STREAM_PUB_PORT`` a
 ``NGINX_PUSH_STREAM_SUB_PORT`` defined in ``test_project.settings``.
 
 Celery container defined in that compose file listens by default on port 45672. If you want
-to change it, please make sure to adjust variable ``CELERY_BROKER_URL `` in ``test_project.settings``.
+to change it, please make sure to adjust variable ``CELERY_BROKER_URL`` in
+``test_project.settings``.
 
 Set-up test_project with requirements
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -43,20 +44,20 @@ From the root directory of the repo, please:
     yarn
     pip install -r requirements.txt
     export PYTHONPATH=..
-    python manage.py syncdb
+    python manage.py migrate
 
 
 celery
 ~~~~~~
 
-It's time to launch our background worker, that will handle long-running tasks. Please
-launch another terminal window and from the root directory of the repo please:
+It's time to launch our background worker, that will handle long-running tasks.
 
 .. code-block:: shell
 
-    cd test_project
-    export PYTHONPATH=..
     celery worker -A test_project.celery -E -l INFO
+
+Celery should say something about our transport being "amqp://guest:**@localhost:45672//". The port
+should match the port used in docker-compose container.
 
 Django
 ~~~~~~
