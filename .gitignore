@@ -102,3 +102,7 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+#
+test_project/node_modules
+test_project/staticroot

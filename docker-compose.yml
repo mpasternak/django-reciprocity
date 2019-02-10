@@ -1,0 +1,14 @@
+version: '2'
+services:
+
+  webserver:
+    build:
+      dockerfile: Dockerfile-nginx
+      context: docker
+    ports:
+      - "9080:80"
+
+  rabbitmq:
+    image: rabbitmq:latest
+    ports:
+      - "45672:5672"
