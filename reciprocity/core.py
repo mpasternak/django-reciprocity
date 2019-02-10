@@ -47,6 +47,4 @@ class WebPage(EveryMixin):
         self.uuid = uuid
 
     def publish(self, **message):
-        print("GONNA PUBLISH", message)
-        print(self.queue_type + self.uuid)
         return publish_message(self.queue_type + self.uuid, **message)
