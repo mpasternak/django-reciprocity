@@ -1,0 +1,18 @@
+version: 2
+jobs:
+  build:
+    machine: true
+    steps:
+      - checkout
+
+      - run:
+          name: Run docker-compose
+          command: docker-compose up -d
+          
+      - run:
+          name: Pip install
+          command: pip install -U tox
+
+      - run:
+          name: Run tox
+          command: tox
