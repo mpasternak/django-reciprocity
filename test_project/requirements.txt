@@ -3,3 +3,7 @@ django-nginx-push-stream
 django-template-uuid
 django-yarn
 celery
+pytest
+pytest-django
+pytest-selenium
+

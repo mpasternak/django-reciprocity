@@ -19,10 +19,9 @@ you can run it using included image. In this repo's root dir:
 
 .. code-block:: shell
 
-    docker-compose up
+    docker-compose up webserver rabbitmq
 
-This will boot the nginx with http push stream module and celery.
-
+This will boot a container running nginx with HTTP-push-stream module and a RabbitMQ node.
 
 This nginx server is a proxy to a service running on your local machine (it loops back to
 ``docker.host.internal`` port 8080). It listens by default on port 9080. If you ever need to
@@ -32,6 +31,10 @@ change this port, make sure to adjust variables ``NGINX_PUSH_STREAM_PUB_PORT`` a
 Celery container defined in that compose file listens by default on port 45672. If you want
 to change it, please make sure to adjust variable ``CELERY_BROKER_URL`` in
 ``test_project.settings``.
+
+There may be more containers defined in the ``docker-compose.yml`` file. They're utilized
+for tests and may take more time to download, so that's why it is good to specify which
+containers to start when running ``docker-compose``. 
 
 Set-up test_project with requirements
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -12,3 +12,9 @@ services:
     image: rabbitmq:latest
     ports:
       - "45672:5672"
+
+  selenium:
+    image: selenium/standalone-firefox-debug
+    ports:
+      - "44444:4444"
+      - "45900:5900"
