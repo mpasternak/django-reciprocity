@@ -9,9 +9,9 @@ language: python
 
 python: 3.6
 
-#before_install:
-#  - .travis/main.sh
-#  - docker version
+before_install:
+  - .travis/main.sh
+  - docker version
 
 script:
   - docker-compose up -d webserver selenium
