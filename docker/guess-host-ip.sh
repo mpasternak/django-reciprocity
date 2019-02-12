@@ -1,5 +1,7 @@
 #!/bin/bash -e
 
+ip -4 addr show
+
 export POSSIBLE_IP=$(ip -4 addr show docker0 | grep -Po 'inet \K[\d.]+')
 
 if [ "x$POSSIBLE_IP" == "x" ]; then
