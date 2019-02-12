@@ -10,7 +10,6 @@ TEXT_CALLOUT_HEADER = "This was added dynamically via NGINX-Http-Push-Stream"
 
 
 def test_integration_callout(selenium, live_server):
-    selenium.get("http://www.onet.pl/")
     selenium.get("http://webserver/")
     WebDriverWait(selenium, wait_timeout).until(page_source_contains(TEXT_BEFORE_UUID))
 
