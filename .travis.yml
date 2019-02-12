@@ -1,3 +1,5 @@
+sudo: required
+
 env:
   - TOXENV=py36
 
@@ -6,6 +8,9 @@ install: pip install -U tox
 language: python
 
 python: 3.6
+
+before_install:
+  - .travis/main.sh
 
 script:
   - docker version
