@@ -1,6 +1,9 @@
 django-reciprocity
 ==================
 
+.. image:: https://travis-ci.org/mpasternak/django-reciprocity.svg?branch=develop
+   :target: https://travis-ci.org/mpasternak/django-reciprocity
+
 To make a long story short, read description of `django-nginx-push-stream`_ . This is
 a bit higher level, than `django-nginx-push-stream`_ - it is an implementation of an
 interactive web UI in JavaScript (based on jQuery and Foundation 6) and Python (Django).
