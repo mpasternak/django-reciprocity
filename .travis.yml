@@ -26,5 +26,5 @@ script:
   - cd test_project && yarn
   - tox -e ${TOXENV}
   - docker-compose stop
-  - docker-compose logs webserver
-  - docker-compose logs selenium
+#  - docker-compose logs webserver
+#  - docker-compose logs selenium
