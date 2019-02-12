@@ -13,8 +13,13 @@ RUN apt-get -qq update \
 COPY default /etc/nginx/sites-available
 COPY nginx.conf /etc/nginx/
 
-EXPOSE 80
+RUN apt-get -qq update \
+    && DEBIAN_FRONTEND=noninteractive apt-get -qq install -y iproute2
+COPY guess-host-ip.sh /
+RUN chmod +x /guess-host-ip.sh && /guess-host-ip.sh
 
-# RUN nginx -t
+RUN nginx -t
+
+EXPOSE 80
 
 ENTRYPOINT nginx && tail -f /var/log/nginx/*
