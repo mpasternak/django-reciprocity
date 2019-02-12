@@ -23,21 +23,34 @@ iplweb.reciprocity.init = function (csrftoken, pubPrefix, templatePath, host, po
         host: host,
         port: port,
         modes: "websocket",
-        useSSL: useSSL
+        useSSL: useSSL,
+        onmessage: this.onMessage.bind(this),
+        onerror: this.onError.bind(this)
     });
 
-    this.pushstream.onmessage = this.onMessage.bind(this);
-
     this.templatePath = templatePath;
+    this.loadingFailed = false;
 };
 
 iplweb.reciprocity.connect = function () {
     this.pushstream.connect();
 };
 
+iplweb.reciprocity.onError = function (eventType) {
+    if (eventType.type == "load" && !this.loadingFailed) {
+        iplweb.reciprocity.callout({
+            header: "Cannot connect to notification server",
+            body: "The notification server seems to be unavailable.",
+            class: "alert"
+        });
+        console.log(this);
+        this.loadingFailed = true;
+    }
+};
+
 
 iplweb.reciprocity.subscribe = function (channel) {
-    this.pushstream.addChannel(this.pubPrefix + channel);
+    return this.pushstream.addChannel(this.pubPrefix + channel);
 };
 
 iplweb.reciprocity.callout = function (message) {

@@ -1,7 +1,9 @@
 from django.conf import settings
+from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.wait import WebDriverWait
 
 from reciprocity.core import WebPage
+from test_project.settings_pytest import NGINX_PUSH_STREAM_PUB_HOST
 from .selenium_utils import page_source_contains, wait_timeout
 
 
@@ -17,4 +19,11 @@ def test_integration_callout(selenium, live_server):
 
     WebPage(uuid).callout(TEXT_CALLOUT_HEADER, "body")
 
-    WebDriverWait(selenium, wait_timeout).until(page_source_contains(TEXT_CALLOUT_HEADER))
+    try:
+        WebDriverWait(selenium, wait_timeout).until(page_source_contains(TEXT_CALLOUT_HEADER))
+    except TimeoutException:
+        if selenium.page_source.find("Cannot connect to notification server"):
+            raise Exception("Cannot connect to notification server via selenium: %s %s" % (
+                settings.NGINX_PUSH_STREAM_SUB_HOST,
+                settings.NGINX_PUSH_STREAM_SUB_PORT,
+            ))
