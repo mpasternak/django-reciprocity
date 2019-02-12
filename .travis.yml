@@ -12,11 +12,12 @@ python: 3.6
 before_install:
   - .travis/main.sh
   - docker version
-
-script:
   - docker-compose up -d webserver selenium
   - /bin/bash -c "while ! nc -z localhost 44444; do echo Waiting for selenium to start; sleep 1; done;"
-  - /bin/bash -c "while ! nc -z localhost 9080; do echo Waiting for nginx to start; sleep 1; done;"    
+  - /bin/bash -c "while ! nc -z localhost 9080; do echo Waiting for nginx to start; sleep 1; done;"
+
+script:
+  - cd test_project && yarn
   - tox -e ${TOXENV}
   - docker-compose stop
   - docker-compose logs
