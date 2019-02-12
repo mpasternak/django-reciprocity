@@ -7,4 +7,7 @@ language: python
 
 python: 3.6
 
-script: tox -e ${TOXENV}
+script:
+  docker-compose up -d
+  /bin/bash -c "while ! nc -z localhost 44444; do echo Waiting for selenium to start; sleep 1; done;"
+  tox -e ${TOXENV}
