@@ -13,4 +13,4 @@ fi
 
 echo "$POSSIBLE_IP host.docker.internal" >> /etc/hosts
 
-
+cat /etc/hosts
