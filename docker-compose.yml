@@ -2,7 +2,6 @@ version: '2'
 services:
 
   webserver:
-    hostname: webserver
     build:
       dockerfile: Dockerfile-nginx
       context: docker
