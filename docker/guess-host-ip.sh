@@ -7,8 +7,10 @@ if [ "x$POSSIBLE_IP" == "x" ]; then
 fi
 
 if [ "x$POSSIBLE_IP" == "x" ]; then
-    echo "host IP not available";
+    echo "host IP not available, cannot continue";
     exit 1;
 fi
 
-echo "$POSSIBLE_IP docker.host" >> /etc/hosts
+echo "$POSSIBLE_IP host.docker.internal" >> /etc/hosts
+
+

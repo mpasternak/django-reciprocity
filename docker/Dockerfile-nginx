@@ -11,15 +11,18 @@ RUN apt-get -qq update \
      nginx-full=1.14.1-0+xenial0+pushstream1
 
 COPY default /etc/nginx/sites-available
+
 COPY nginx.conf /etc/nginx/
 
 RUN apt-get -qq update \
     && DEBIAN_FRONTEND=noninteractive apt-get -qq install -y iproute2
-COPY guess-host-ip.sh /
-RUN chmod +x /guess-host-ip.sh && /guess-host-ip.sh
 
-RUN nginx -t
+COPY guess-host-ip.sh /
+RUN chmod +x /guess-host-ip.sh
+
+COPY nginx-entrypoint.sh /
+RUN chmod +x /nginx-entrypoint.sh
 
 EXPOSE 80
 
-ENTRYPOINT nginx && tail -f /var/log/nginx/*
+ENTRYPOINT bash -c /nginx-entrypoint.sh && tail -f /var/log/nginx/*
