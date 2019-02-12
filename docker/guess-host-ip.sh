@@ -10,7 +10,8 @@ fi
 
 if [ "x$POSSIBLE_IP" == "x" ]; then
     echo "host IP not available, cannot continue";
-    exit 1;
+    # exit 1;
+    export POSSIBLE_IP=172.18.0.1
 fi
 
 echo "$POSSIBLE_IP host.docker.internal" >> /etc/hosts
