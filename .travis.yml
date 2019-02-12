@@ -1,5 +1,11 @@
 sudo: required
 
+cache:
+  yarn: true
+  directories:
+    - node_modules
+    - test_project/node_modules
+
 env:
   - TOXENV=py36
 
@@ -20,4 +26,5 @@ script:
   - cd test_project && yarn
   - tox -e ${TOXENV}
   - docker-compose stop
-  - docker-compose logs
+  - docker-compose logs webserver
+  - docker-compose logs selenium
