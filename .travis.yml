@@ -1,5 +1,10 @@
+sudo: 'required'
+
+services:
+  - docker
+  
 env:
-- TOXENV=py36
+  - TOXENV=py36
 
 install: pip install -U tox
 
@@ -7,7 +12,11 @@ language: python
 
 python: 3.6
 
-script:
+before_install:
+  - './.travis/main.sh'
+  - docker version
   - docker-compose up -d webserver selenium
   - /bin/bash -c "while ! nc -z localhost 44444; do echo Waiting for selenium to start; sleep 1; done;"
+
+script:
   - tox -e ${TOXENV}
