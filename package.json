@@ -1,10 +1,5 @@
 {
-    "private": true,
-    "workspaces": [
-	"test_project",
-	"reciprocity/static/reciprocity/js/tests/"
-    ],
-    "scripts": {
-	"test": "cd reciprocity/static/reciprocity/js/tests/ && yarn test"
+    "scripts" : {
+	"test": "cd reciprocity/static/reciprocity/js/tests && yarn test"
     }
 }
