@@ -16,8 +16,8 @@ language: python
 python: 3.6
 
 before_install:
-  - .travis/main.sh
-  - docker version
+  - .travis/docker.sh
+  - .travis/yarn.sh
   - docker-compose up -d webserver selenium
   - /bin/bash -c "while ! nc -z localhost 44444; do echo Waiting for selenium to start; sleep 1; done;"
   - /bin/bash -c "while ! nc -z localhost 9080; do echo Waiting for nginx to start; sleep 1; done;"
