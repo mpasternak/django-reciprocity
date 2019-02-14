@@ -1,5 +1,6 @@
 {
     "name": "test-project",
+    "version": "0.0.1",
     "dependencies": {
 	"foundation-sites": "^6.5.3",
 	"jquery": "^3.3.1",
