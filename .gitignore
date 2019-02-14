@@ -104,5 +104,6 @@ venv.bak/
 .mypy_cache/
 
 #
+reciprocity/static/reciprocity/js/tests/node_modules/
 test_project/node_modules
 test_project/staticroot
