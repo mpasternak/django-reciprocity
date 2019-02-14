@@ -21,10 +21,8 @@ before_install:
   - docker-compose up -d webserver selenium
   - /bin/bash -c "while ! nc -z localhost 44444; do echo Waiting for selenium to start; sleep 1; done;"
   - /bin/bash -c "while ! nc -z localhost 9080; do echo Waiting for nginx to start; sleep 1; done;"
+  - cd test_project && yarn --dev
 
 script:
-  - cd test_project && yarn
   - tox -e ${TOXENV}
-  - docker-compose stop
-#  - docker-compose logs webserver
-#  - docker-compose logs selenium
+  - cd reciprocity/static/reciprocity/js/tests && yarn --dev && yarn test  
