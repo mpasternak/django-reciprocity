@@ -23,7 +23,9 @@ setup_dependencies() {
   
   sudo apt-get update && sudo apt-get install -y yarn
 
+  /usr/bin/yarn --version
   yarn --version
+  whereis yarn
 }
 
 main
