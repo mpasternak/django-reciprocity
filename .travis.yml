@@ -24,9 +24,8 @@ before_install:
   - /usr/bin/yarn --version
 
 before_script:
-  - cd reciprocity/static/reciprocity/js/tests && /usr/bin/yarn --dev
-  - pwd
-  - cd test_project && /usr/bin/yarn --dev
+  - (cd reciprocity/static/reciprocity/js/tests && /usr/bin/yarn --dev)
+  - (cd test_project && /usr/bin/yarn --dev)
 
 script:
   - tox -e ${TOXENV}
