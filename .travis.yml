@@ -25,6 +25,7 @@ before_install:
 
 before_script:
   - cd reciprocity/static/reciprocity/js/tests && /usr/bin/yarn --dev
+  - pwd
   - cd test_project && /usr/bin/yarn --dev
 
 script:
