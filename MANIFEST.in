@@ -2,6 +2,11 @@ include HISTORY.rst
 include LICENSE
 include README.rst
 
+
 recursive-include reciprocity *
+
+prune reciprocity/static/reciprocity/js/tests
+
 recursive-exclude * __pycache__
+recursive-exclude * *~
 recursive-exclude * *.py[co]
