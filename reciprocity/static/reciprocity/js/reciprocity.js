@@ -43,7 +43,6 @@ iplweb.reciprocity.onError = function (eventType) {
             body: "The notification server seems to be unavailable.",
             class: "alert"
         });
-        console.log(this);
         this.loadingFailed = true;
     }
 };
