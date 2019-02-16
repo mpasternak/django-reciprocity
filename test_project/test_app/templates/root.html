@@ -40,11 +40,24 @@
                 $.ajax("{% url "startLongProcess" %}?uuid={{ reciprocity_page_uuid }}");
             }
         </script>
-        <a href="javascript:startLongProcess()">Start long process</a>
+        <p><a href="javascript:startLongProcess()">Start long process. </a>
+        </p>
+        <p>
+            <small>If clicking the above link doesn't make the progress bar appear,
+                check if you're running 'celery' as described in README.rst
+            </small>
+        </p>
     </div>
 </div>
 
+<div id="jquery-loading-error" style="display: none;">
+    jQuery did not load. Did you 'yarn --dev' in 'test_project'?
+</div>
+
 <script>
+    if (!window.jQuery)
+        document.getElementById("jquery-loading-error").style['display'] = 'block';
+
     $(document).foundation();
 </script>
 
