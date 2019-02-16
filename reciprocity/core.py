@@ -2,17 +2,6 @@ from nginx_push_stream.const import QUEUE_UUID, QUEUE_ALL_USERS, QUEUE_ALL_LOGGE
 from nginx_push_stream.core import publish_message
 
 
-class ProgressDialogMixin:
-    def progress_dialog_init(self, header, lead, paragraph):
-        return self.publish(type="progress-dialog-init", header=header, lead=lead, paragraph=paragraph)
-
-    def progress_dialog_update(self, value):
-        return self.publish(type="progress-dialog-update", value=value)
-
-    def progress_dialog_close(self):
-        return self.publish(type="progress-dialog-close")
-
-
 class CalloutMixin:
     def callout(self, header, body, klass="success"):
         return self.publish(type="callout", header=header, body=body, **{"class": klass})
