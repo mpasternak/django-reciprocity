@@ -18,16 +18,16 @@ class TestReciprocity_Core_ProgressDialogMixin(TestCase):
 
         self.obj = ProgressTest()
 
-    def test_progress_dialog_init(self):
-        self.obj.progress_dialog_init("header", "lead", "para")
+    def test_progressDialogInit(self):
+        self.obj.progressDialogInit("header", "lead", "para")
         self.assert_(self.obj.publishCalled)
 
-    def test_progress_dialog_update(self):
-        self.obj.progress_dialog_update("value")
+    def test_progressDialogUpdate(self):
+        self.obj.progressDialogUpdate("value")
         self.assert_(self.obj.publishCalled)
 
-    def test_progress_dialog_close(self):
-        self.obj.progress_dialog_close()
+    def test_progressDialogClose(self):
+        self.obj.progressDialogClose()
         self.assert_(self.obj.publishCalled)
 
 
