@@ -23,7 +23,36 @@ class GotoPageMixin:
         return self.publish(type="goto-page", href=href)
 
 
-class EveryMixin(ProgressDialogMixin, CalloutMixin, GotoPageMixin):
+class ModalDialogMixin:
+    def modalDialog(self, paragraph, lead=None, header=None):
+        return self.publish(type="modal-dialog", paragraph=paragraph, lead=lead, header=header)
+
+    def closeModalDialog(self):
+        return self.publish(type="close-modal-dialog")
+
+
+class PleaseWaitDialogMixin:
+    def pleaseWaitDialog(self, paragraph, lead=None, header=None):
+        return self.publish(type="please-wait-dialog", paragraph=paragraph, lead=lead, header=header)
+
+    def closePleaseWaitDialog(self):
+        return self.publish(type="close-please-wait-dialog")
+
+
+class ProgressDialogMixin:
+    def progressDialogInit(self, paragraph, lead=None, header=None):
+        return self.publish(type="progress-dialog-init",
+                            header=header, lead=lead, paragraph=paragraph)
+
+    def progressDialogUpdate(self, value):
+        return self.publish(type="progress-dialog-update",
+                            value=value)
+
+    def progressDialogClose(self):
+        return self.publish(type="progress-dialog-close")
+
+class EveryMixin(ProgressDialogMixin, CalloutMixin, GotoPageMixin, ModalDialogMixin,
+                 PleaseWaitDialogMixin):
     pass
 
 
