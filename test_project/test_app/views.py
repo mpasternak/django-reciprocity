@@ -13,3 +13,7 @@ def start_long_process(request):
         return HttpResponseNotAllowed()
     long_running_task.delay(web_page_uuid=request.GET['uuid'])
     return HttpResponse("{}")
+
+
+def test_gotoPage(request):
+    return HttpResponse('gotoPage works')
